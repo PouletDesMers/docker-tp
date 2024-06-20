@@ -61,3 +61,8 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ## LIEN DE NOTRE REPERTOIRE GITHUB
 https://github.com/PouletDesMers/docker-tp 
+
+## LIEN DE NOTRE REPERTOIRE DockerHub
+https://hub.docker.com/repository/docker/lucilachanse/flask-app/general
+https://hub.docker.com/repository/docker/lucilachanse/vue-app/general
+https://hub.docker.com/repository/docker/lucilachanse/flask-app/general
