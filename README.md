@@ -1,10 +1,13 @@
-# docker-tp
+# Docker-tp 2A1
+
+### Clément DROUAL
+### Adrien MESLIN
 
 
-# MariaDB
+## MariaDB
 docker run --name mariadb-container -e MYSQL_ROOT_PASSWORD=rootpassword -e MYSQL_DATABASE=mydatabase -e MYSQL_USER=user -e MYSQL_PASSWORD=password -v /path/to/your/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql -v mariadb-data:/var/lib/mysql -d mariadb:11
 
-# Flask
+## Contenu Dockerfile Flask
 FROM python:3.8
 WORKDIR /app
 COPY requirements.txt ./
@@ -14,14 +17,14 @@ EXPOSE 5000
 CMD ["python", "app.py"]
 
 
-# Lancer le conteneur
-docker build -t flask-app "chemin"
+## Lancer le conteneur
+docker build -t flask-app back
 
 docker run --name flask-container --link mariadb-container:mariadb -e DATABASE_URL=mysql://user:password@mariadb:3306/mydatabase -p 5000:5000 -d flask-app
 
 
 
-# image
+## Contenu Dockerfile
 FROM node:16 as build-stage
 WORKDIR /app
 COPY package.json yarn.lock ./
@@ -35,17 +38,25 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 
-
-
-# conteneur Vue.js
-docker build -t vue-app /path/to/your/frontend
+## Conteneur Vue.js
+docker build -t vue-app front
 docker run --name vue-container -p 80:80 -d vue-app
 
 
-# Pousse les images pour docker Hub
-docker tag flask-app <dockerhub-username>/flask-app:latest
-docker tag vue-app <dockerhub-username>/vue-app:latest
-docker tag mariadb:11 <dockerhub-username>/mariadb:latest
+## Pousse les images pour docker Hub
+docker tag flask-app lucilachanse/flask-app:latest
+docker tag vue-app lucilachanse/vue-app:latest
+docker tag mariadb:11 lucilachanse/mariadb:latest
 
-## connection docker hub
+## Connection docker hub
 docker login
+
+
+## Push image
+docker push lucilachanse/flask-app:latest
+docker push lucilachanse/vue-app:latest
+docker push lucilachanse/mariadb:latest
+
+
+## LIEN DE NOTRE REPERTOIRE GITHUB
+https://github.com/PouletDesMers/docker-tp 
